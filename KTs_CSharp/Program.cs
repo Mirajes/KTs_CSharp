@@ -48,18 +48,124 @@ namespace KTs_CSharp
                     bufferBuffer[i] = _buffer[i];
                 }
                 _buffer[_count++] = value;
-                _count += 1;
+                _count++;
             }
             else
             {
                 _buffer[_count++] = value;
-                _count += 1;
+                _count++;
             }
         }
 
         public void PopBack()
         {
-            //
+            if (_count == 0)
+            {
+                return;
+            }
+            else
+            {
+                _buffer[_count - 1] = 0;
+                _count--;
+            }
+        }
+
+        public bool TryInsert(int index, int value)
+        {
+            if (index == _count - 1)
+            {
+                PushBack(value);
+                return true;
+            }
+            else if (index < _count - 1)
+            {
+                int[] afterBuffer = new int[_count];
+                for (int i = index; i < _count - 1; i++)
+                {
+                    afterBuffer[i] = _buffer[i];
+                }
+
+                _buffer[index] = value;
+                for (int i = index + 1; i < afterBuffer.Length; i++)
+                {
+                    _buffer[i] = afterBuffer[i];
+                }
+
+                _count++;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool TryErase(int index)
+        {
+            if (index > _count - 1)
+            {
+                return false;
+            }
+            else
+            {
+                // ?
+                _buffer[index] = 0;
+                _count--;
+                return true;
+            }
+        }
+
+        public bool TryGetAt(int index, out int result)
+        {
+            result = 0;
+
+            if (index < 0 || index > _count)
+            {
+                return false;
+            }
+
+            // ?
+        }
+
+        public void Clear()
+        {
+            for (int i = 0; i < _count; i++)
+            {
+                _buffer[i] = 0;
+            }
+        }
+
+        public bool TryForceCapacity(int newCapacity)
+        {
+            if (newCapacity < 0)
+            {
+                return false;
+            }
+            else if ()
+        }
+
+        public int Find(int value)
+        {
+            int index = -1;
+
+            foreach (int i in _buffer)
+                if (value == _buffer[i])
+                    return i;
+
+            return index;
+        }
+
+        public void Print()
+        {
+            Console.WriteLine($"Capacity is {_capacity}");
+            for (int index = 0; index < _count; index++)
+            {
+                if (_buffer[index] == 0)
+                    continue;
+
+                Console.WriteLine($"[{index}] - {_buffer[index]}");
+            }
         }
     }
 }
