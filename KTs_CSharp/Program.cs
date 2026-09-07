@@ -10,6 +10,13 @@ namespace KTs_CSharp
     {
         static void Main(string[] args)
         {
+            IntArrayList newList = new IntArrayList();
+
+            newList.PushBack(1);
+            newList.PushBack(2);
+            newList.Print();
+            newList.TryInsert(0, 3);
+            newList.Print();
         }
     }
 
@@ -141,6 +148,7 @@ namespace KTs_CSharp
             {
                 _buffer[i] = 0;
             }
+            _count = 0;
         }
 
         public bool TryForceCapacity(int newCapacity)
@@ -149,8 +157,15 @@ namespace KTs_CSharp
             {
                 return false;
             }
-            
 
+            int[] newBuffer = new int[newCapacity];
+            for (int i = 0; i < newCapacity; i++)
+            {
+                newBuffer[i] = _buffer[i];
+            }
+            _count = newCapacity;
+
+            return true;
         }
 
         public int Find(int value)
@@ -166,8 +181,8 @@ namespace KTs_CSharp
 
         public void Print()
         {
-            Console.WriteLine($"Capacity is {_capacity}");
-            for (int index = 0; index < _count; index++)
+            Console.WriteLine($"\nCapacity is {_capacity}");
+            for (int index = 0; index < _count - 1; index++)
             {
                 if (_buffer[index] == 0)
                     continue;
