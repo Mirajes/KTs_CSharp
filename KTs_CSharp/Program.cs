@@ -10,11 +10,10 @@ namespace KTs_CSharp
     {
         static void Main(string[] args)
         {
-
         }
     }
 
-    public class IntArrayList
+    public class IntArrayList // = List
     {
         private int[] _buffer;
         private int _capacity;
@@ -39,7 +38,14 @@ namespace KTs_CSharp
 
         public void PushBack(int value)
         {
-            if (_count >= _capacity)
+            if (_capacity == 0)
+            {
+                _capacity = _default_capacity;
+                _buffer = new int[_capacity];
+                _buffer[0] = value;
+                _count++;
+            }
+            else if (_count >= _capacity)
             {
                 _capacity *= 2;
                 int[] bufferBuffer = new int[_capacity];
@@ -120,12 +126,13 @@ namespace KTs_CSharp
         {
             result = 0;
 
-            if (index < 0 || index > _count)
+            if (index < 0 || index > _count - 1)
             {
                 return false;
             }
 
-            // ?
+            result = _buffer[index];
+            return true;
         }
 
         public void Clear()
@@ -142,7 +149,8 @@ namespace KTs_CSharp
             {
                 return false;
             }
-            else if ()
+            
+
         }
 
         public int Find(int value)
