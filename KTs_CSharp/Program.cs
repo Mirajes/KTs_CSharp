@@ -15,12 +15,15 @@ namespace KTs_CSharp
             newList.PushBack(1);
             newList.PushBack(2);
             newList.Print();
-            newList.TryInsert(0, 3);
+            newList.TryInsert(1, 3);
             newList[0] = 67;
             newList.Print();
             newList.PushBack(52);
-            newList[3] = 2;
+            newList[3] = 10;
             newList.PushBack(7);
+            newList.Print();
+
+            newList.Clear();
             newList.Print();
         }
     }
@@ -119,7 +122,11 @@ namespace KTs_CSharp
 
             _array = newArray;
 
-            _count += 1;
+            if (_count != _capacity)
+            {
+                _count += 1;
+            }
+
             return true;
         }
 
@@ -196,7 +203,8 @@ namespace KTs_CSharp
 
         public void Print()
         {
-            Console.WriteLine($"\nCapacity is {_capacity}");
+            Console.Write($"\nCapacity is {_capacity}");
+            Console.WriteLine($"\nCount is {_count}");
             for (int index = 0; index < _count; index++)
             {
                 if (_array[index] == 0)
