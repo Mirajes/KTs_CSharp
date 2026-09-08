@@ -16,129 +16,131 @@ namespace KTs_CSharp
             newList.PushBack(2);
             newList.Print();
             newList.TryInsert(0, 3);
+            newList[0] = 67;
+            newList.Print();
+            newList.PushBack(52);
+            newList[3] = 2;
+            newList.PushBack(7);
             newList.Print();
         }
     }
 
     public class IntArrayList // = List
     {
-        private int[] _buffer;
-        private int _capacity;
-        private int _count;
+        private int[] _array; // buffer
+        private int _capacity; // only size
+        private int _count; // usefull ints
 
-        private readonly int _default_capacity = 2;
+        private readonly int _ROnly_capacity = 2;
 
         public int Capacity => _capacity;
         public int Count => _count;
 
-        // indexator?
+        public int this[int index]
+        {
+            get => _array[index];
+            set
+            {
+                if (_array[index] == 0)
+                {
+                    _array[index] = value;
+                    _count += 1;
+                }
+                else
+                {
+                    _array[index] = value;
+                }
+            }
+        }
 
         public IntArrayList()
         {
-            _buffer = new int[_default_capacity];
+            _array = new int[_ROnly_capacity];
+            _capacity = _ROnly_capacity;
         }
 
         public IntArrayList(int capacity)
         {
-            _buffer = new int[capacity];
+            _array = new int[capacity];
+            _capacity = capacity;
         }
 
         public void PushBack(int value)
         {
-            if (_capacity == 0)
-            {
-                _capacity = _default_capacity;
-                _buffer = new int[_capacity];
-                _buffer[0] = value;
-                _count++;
-            }
-            else if (_count >= _capacity)
+            if (_count >= _capacity)
             {
                 _capacity *= 2;
-                int[] bufferBuffer = new int[_capacity];
-                for (int i = 0; i <= _buffer.Length; i++)
+                int[] newArray = new int[_capacity];
+                for (int i = 0; i < _count; i++)
                 {
-                    bufferBuffer[i] = _buffer[i];
+                    newArray[i] = _array[i];
                 }
-                _buffer[_count++] = value;
-                _count++;
+
+                _array = newArray;
+                _array[_count] = value;
+                _count += 1;
             }
             else
             {
-                _buffer[_count++] = value;
-                _count++;
+                _array[_count] = value;
+                _count += 1;
             }
         }
 
         public void PopBack()
         {
-            if (_count == 0)
-            {
-                return;
-            }
-            else
-            {
-                _buffer[_count - 1] = 0;
-                _count--;
-            }
+            if (_count == 0) return;
+
+            _array[_count - 1] = 0;
+            _count -= 1;
         }
 
         public bool TryInsert(int index, int value)
         {
-            if (index == _count - 1)
+            if (index < 0 || index >= _capacity) return false;
+
+            if (index == _count)
             {
                 PushBack(value);
                 return true;
             }
-            else if (index < _count - 1)
+
+            int[] newArray = new int[_capacity];
+            for (int i = 0; i < index; i++)
             {
-                int[] afterBuffer = new int[_count];
-                for (int i = index; i < _count - 1; i++)
-                {
-                    afterBuffer[i] = _buffer[i];
-                }
-
-                _buffer[index] = value;
-                for (int i = index + 1; i < afterBuffer.Length; i++)
-                {
-                    _buffer[i] = afterBuffer[i];
-                }
-
-                _count++;
-
-                return true;
+                newArray[i] = _array[i];
             }
-            else
+
+            newArray[index] = value;
+            for (int i = index + 1; i < _count; i++)
             {
-                return false;
+                newArray[i] = _array[i];
             }
+
+            _array = newArray;
+
+            _count += 1;
+            return true;
         }
 
         public bool TryErase(int index)
         {
-            if (index > _count - 1)
-            {
-                return false;
-            }
-            else
-            {
-                // ?
-                _buffer[index] = 0;
-                _count--;
-                return true;
-            }
+            if (index < 0 || index > _count - 1) return false;
+
+            _array[index] = 0;
+            _count -= 1;
+            return true;
         }
 
         public bool TryGetAt(int index, out int result)
         {
-            result = 0;
-
             if (index < 0 || index > _count - 1)
             {
+                result = 0;
                 return false;
             }
 
-            result = _buffer[index];
+            result = _array[index];
             return true;
         }
 
@@ -146,25 +148,34 @@ namespace KTs_CSharp
         {
             for (int i = 0; i < _count; i++)
             {
-                _buffer[i] = 0;
+                _array[i] = 0;
             }
+
             _count = 0;
         }
 
         public bool TryForceCapacity(int newCapacity)
         {
-            if (newCapacity < 0)
+            if (newCapacity < 0) return false;
+
+            int[] newArray = new int[newCapacity];
+
+            if (newCapacity > _capacity)
             {
-                return false;
+                for (int i = 0; i < _count; i++)
+                {
+                    newArray[i] = _array[i];
+                }
+            }
+            else
+            {
+                for (int i = 0; i < newCapacity; i++)
+                {
+                    newArray[i] = _array[i];
+                }
             }
 
-            int[] newBuffer = new int[newCapacity];
-            for (int i = 0; i < newCapacity; i++)
-            {
-                newBuffer[i] = _buffer[i];
-            }
-            _count = newCapacity;
-
+            _array = newArray;
             return true;
         }
 
@@ -172,9 +183,13 @@ namespace KTs_CSharp
         {
             int index = -1;
 
-            foreach (int i in _buffer)
-                if (value == _buffer[i])
+            foreach (int i in _array)
+            {
+                if (value == _array[i])
+                {
                     return i;
+                }
+            }
 
             return index;
         }
@@ -182,12 +197,12 @@ namespace KTs_CSharp
         public void Print()
         {
             Console.WriteLine($"\nCapacity is {_capacity}");
-            for (int index = 0; index < _count - 1; index++)
+            for (int index = 0; index < _count; index++)
             {
-                if (_buffer[index] == 0)
+                if (_array[index] == 0)
                     continue;
 
-                Console.WriteLine($"[{index}] - {_buffer[index]}");
+                Console.WriteLine($"[{index}] - {_array[index]}");
             }
         }
     }
