@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,7 +28,73 @@ namespace KTs_CSharp
 
             //Product wow = new Product("wow1", 123, 1);
             //wow.Change(new Product("im new", 666, 3));
+
+            // packing-unpacking
+            List<object> objectList = new List<object> { 5, 3f, 23, 2.345f, 10.2f, 32 };
+            float summResult = 0;
+            // method CountDown
+            foreach (object obj in objectList)
+            {
+                summResult += (float)obj;
+            }
         }
+    }
+    // generic class
+    public class Book<Id>
+    {
+        private string _name;
+        private int _pagesCount;
+        private string _author;
+        private Id _id;
+
+        public override string ToString()
+        {
+            // ??
+            return base.ToString();
+        }
+
+        // ??
+    }
+
+    // default values
+    public class Class<T>
+    {
+        private T _value;
+        public T Value => _value;
+
+        public Class(T value)
+        {
+            _value = value;
+        }
+
+        public void Reset()
+        {
+            _value = default(T);
+        }
+    }
+
+    // generic method
+    public class Figure
+    {
+        private Vector2 _center; // ?
+
+    }
+
+    public class Circle<T> : Figure
+    {
+        public T Radius => _radius;
+        private T _radius;
+
+        public Circle(T radius)
+        {
+            _radius = radius;
+        }
+
+        public void SetRadius(T radius)
+        {
+            _radius = radius;
+        }
+        // ??
     }
 }
 
