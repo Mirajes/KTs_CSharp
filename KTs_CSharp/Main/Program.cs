@@ -25,18 +25,6 @@ namespace KTs_CSharp
 
             newList.Clear();
             newList.Print();
-
-            //Product wow = new Product("wow1", 123, 1);
-            //wow.Change(new Product("im new", 666, 3));
-
-            // packing-unpacking
-            List<object> objectList = new List<object> { 5, 3f, 23, 2.345f, 10.2f, 32 };
-            float summResult = 0;
-            // method CountDown
-            foreach (object obj in objectList)
-            {
-                summResult += (float)obj;
-            }
         }
     }
     // generic class
@@ -76,7 +64,7 @@ namespace KTs_CSharp
     // generic method
     public class Figure
     {
-        private Vector2 _center; // ?
+        private float _center; // ?
 
     }
 
