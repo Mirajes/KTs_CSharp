@@ -1,5 +1,5 @@
 <Solution>
+  <Folder Name="/Элементы решения/" />
   <Project Path="CatFramework/CatFramework.csproj" Id="a43d1009-73a5-4fe2-a668-8b2a885fbac8" />
-  <Project Path="HelperLib/HelperLib.csproj" Id="f5f7cc8c-d00b-42ea-a53b-ad44dec989a0" />
-  <Project Path="KTs_CSharp/KTs_CSharp.csproj" Id="89d88062-9781-4ac6-ae63-3478a377c281" />
+  <Project Path="ConsoleApp1/KTs_CSharp.csproj" Id="ca39d6ec-c907-4402-8979-861360f1b11e" />
 </Solution>

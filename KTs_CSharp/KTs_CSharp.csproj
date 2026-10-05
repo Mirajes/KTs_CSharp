@@ -43,20 +43,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Main\1_OOP_Arrays\IntArrayList.cs" />
-    <Compile Include="Main\3_Generic\Book.cs" />
-    <Compile Include="Main\3_Generic\Circle.cs" />
-    <Compile Include="Main\3_Generic\Class.cs" />
-    <Compile Include="Main\3_Generic\Figure.cs" />
-    <Compile Include="Main\3_Generic\PackingUnpacking.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Main\2_Librabry_of_classes\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -9,6 +9,7 @@ namespace KTs_CSharp
         private int _count; // usefull ints
 
         private readonly int _ROnly_capacity = 2;
+        public int CapacityBase => _ROnly_capacity;
 
         public int Capacity => _capacity;
         public int Count => _count;
@@ -186,6 +187,26 @@ namespace KTs_CSharp
 
                 Console.WriteLine($"[{index}] - {_array[index]}");
             }
+        }
+
+        public void PrintAll()
+        {
+            for (int index = 0; index < _count; index++)
+            {
+                Console.WriteLine($"[{index}] - {_array[index]}");
+            }
+        }
+
+        public void PrintInARow()
+        {
+            Console.WriteLine($"Capacity is [{_capacity}], Count is [{_count}]");
+            Console.Write("Your list is: {");
+            for (int index = 0; index < _count; index++)
+            {
+                Console.Write($" {index}");
+            }
+
+            Console.WriteLine("}");
         }
     }
 }

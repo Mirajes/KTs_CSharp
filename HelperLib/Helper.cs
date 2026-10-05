@@ -2,26 +2,14 @@
 {
     public class Helper
     {
-        public void CreateIndentation() // отступ
+        public void CreateIdentation(string text)
         {
-
+            Console.Write("\n\n" +
+                $"=> [{text} <=]" +
+                "\n\n");
         }
 
+        
 
-        public void Announce(string text)
-        {
-            Console.Write($"\n\n" +
-                $"=> [{text}] <=" +
-                $"\n\n"
-                );
-        }
-
-        public void WaitForInput(ref string answer)
-        {
-            
-
-            Console.Write("\n>> ");
-
-        }
     }
 }
