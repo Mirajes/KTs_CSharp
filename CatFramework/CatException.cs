@@ -5,7 +5,7 @@
     {
         public CatException(string message) 
         {
-            throw new ArgumentException(message);
+            Console.WriteLine($"[ERROR][CatException] - {message}");
         }
     }
 }

@@ -4,19 +4,17 @@
     {
         public override void Enter()
         {
-            Helper helper = new();
-
             while (true)
             {
-                helper.CreateAnIdentation("KT1_IntArrayList");
-                Console.WriteLine($"[1] -- lazy debug" +
-                    $"\n[nonlazy] -- debug" +
-                    $"\n[exit] -- to exit");
+                Helper.CreateAnIdentation("KT1_IntArrayList");
+                Console.WriteLine("[1] - lazy debug" +
+                    "\n[nonlazy] - debug" +
+                    "\n[exit] - to exit");
 
-                helper.MakeNewAnswer();
+                Helper.GetAnswer();
 
                 IntArrayList newList = new();
-                switch (helper.Answer)
+                switch (Helper.Answer)
                 {
                     case "1":
                         newList.PushBack(1);
@@ -51,12 +49,13 @@
                                 "\n[print] - Print Ints, Capacity and Count of List (no 0)" +
                                 "\n[printAll] - Print everything");
 
-                            helper.MakeNewAnswer();
-                            switch (helper.Answer)
+                            Helper.GetAnswer();
+                            switch (Helper.Answer)
                             {
                                 case "recreate":
                                     Console.Write(" newCapacity is >> ");
-                                    int newCapacity = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int newCapacity))
+                                        break;
 
                                     if (newCapacity < 0)
                                     {
@@ -69,7 +68,9 @@
 
                                 case "push":
                                     Console.Write(" int to push >> ");
-                                    int intToPush = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int intToPush))
+                                        break;
+
                                     newList.PushBack(intToPush);
                                     break;
 
@@ -79,21 +80,25 @@
 
                                 case "insert":
                                     Console.Write(" index >> ");
-                                    int insertIndex = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int insertIndex))
+                                        break;
                                     Console.Write(" value >> ");
-                                    int insertValue = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int insertValue))
+                                        break;
                                     newList.TryInsert(insertIndex, insertValue);
                                     break;
 
                                 case "erase":
                                     Console.Write(" index >> ");
-                                    int eraseIndex = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int eraseIndex))
+                                        break;
                                     newList.TryErase(eraseIndex);
                                     break;
 
                                 case "get":
                                     Console.Write(" index >> ");
-                                    int getIndex = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int getIndex))
+                                        break;
                                     newList.TryGetAt(getIndex, out int getResult);
                                     Console.WriteLine($"Your result is {getResult}");
                                     break;
@@ -103,13 +108,15 @@
 
                                 case "force":
                                     Console.Write(" newCapacity >> ");
-                                    int forceCapacity = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int forceCapacity))
+                                        break;
                                     newList = new IntArrayList(forceCapacity);
                                     break;
 
                                 case "find":
                                     Console.Write(" find value >> ");
-                                    int findValue = Console.Read();
+                                    if (!IntChecker(Console.ReadLine(), out int findValue))
+                                        break;
                                     int findIndex = newList.Find(findValue);
                                     Console.WriteLine($"Your value at index: {findIndex}");
                                     break;
@@ -126,14 +133,24 @@
                                     Console.Clear();
                                     break;
                                 default:
-                                    Console.WriteLine($"wrong answer => {helper.Answer}");
+                                    Console.WriteLine($"wrong answer => {Helper.Answer}");
                                     break;
                             }
                         }
                     case "exit":
                         Console.Clear();
-                        break;
+                        return;
                 }
+            }
+        }
+
+        private bool IntChecker(string? tryNumber, out int number)
+        {
+            if (int.TryParse(tryNumber, out number)) return true;
+            else
+            {
+                Console.WriteLine("Wrong number");
+                return false;
             }
         }
     }

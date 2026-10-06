@@ -4,31 +4,26 @@
     {
         static void Main(string[] args)
         {
-            Helper helper = new Helper();
-
             while (true)
             {
-                helper.CreateAnIdentation("KT CHECKER");
+                Helper.CreateAnIdentation("KT CHECKER");
                 Console.Write("SELECT KT:" +
                     "\n[1] - IntArrayList (repeating OOP + Arrays)" +
                     "\n[2] - CatFramework (Libraries)");
-                helper.MakeNewAnswer();
+                Helper.GetAnswer();
 
-                switch (helper.Answer)
+                switch (Helper.Answer)
                 {
                     case "1":
                         KT1_IntArrayList kt1 = new();
                         kt1.Enter();
                         break;
                     case "2":
+                        KT2_LibraryOfCats kt2 = new();
+                        kt2.Enter();
                         break;
                 }
             }
         }
-    }
-
-    public abstract class A_KT
-    {
-        public abstract void Enter();
     }
 }

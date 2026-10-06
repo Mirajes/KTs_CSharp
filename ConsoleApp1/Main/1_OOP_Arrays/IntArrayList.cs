@@ -180,18 +180,21 @@ namespace KTs_CSharp
         {
             Console.Write($"\nCapacity is {_capacity}");
             Console.WriteLine($"\nCount is {_count}");
-            for (int index = 0; index < _count; index++)
+
+            int shownNums = 0;
+            for (int index = 0; shownNums < _count; index++)
             {
                 if (_array[index] == 0)
                     continue;
 
+                shownNums++;
                 Console.WriteLine($"[{index}] - {_array[index]}");
             }
         }
 
         public void PrintAll()
         {
-            for (int index = 0; index < _count; index++)
+            for (int index = 0; index < _array.Length; index++)
             {
                 Console.WriteLine($"[{index}] - {_array[index]}");
             }
@@ -201,9 +204,9 @@ namespace KTs_CSharp
         {
             Console.WriteLine($"Capacity is [{_capacity}], Count is [{_count}]");
             Console.Write("Your list is: {");
-            for (int index = 0; index < _count; index++)
+            for (int index = 0; index < _array.Length; index++)
             {
-                Console.Write($" {index}");
+                Console.Write($" {_array[index]}");
             }
 
             Console.WriteLine("}");

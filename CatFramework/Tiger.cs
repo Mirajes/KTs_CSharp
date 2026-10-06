@@ -13,7 +13,7 @@
 
             if (75.0 <= weight || weight <= 140.0)
             {
-                throw new CatException($"Unable to create a tiger with weight: {weight}");
+                new CatException($"Unable to create a tiger with weight: {weight}");
             }
             else
             {
@@ -22,7 +22,7 @@
 
             if (0 <= fluffiness || fluffiness <= 100)
             {
-                throw new CatException($"Unable to create a tiger with fluffiness {fluffiness}");
+                new CatException($"Unable to create a tiger with fluffiness {fluffiness}");
             }
             else
             {

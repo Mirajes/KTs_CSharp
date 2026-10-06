@@ -8,7 +8,7 @@
         {
             if (0.0 <= fluffiness || fluffiness <= 140.0)
             {
-                throw new CatException($"Unable to create a cute with fluffiness: {_Fluffiness}");
+                new CatException($"Unable to create a cute with fluffiness: {_Fluffiness}");
             }
             else
             {
