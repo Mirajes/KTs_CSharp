@@ -36,7 +36,7 @@
                         newList = new();
                         while (true)
                         {
-                            newList.PrintInARow();
+                            //newList.PrintInARow();
                             Console.WriteLine("[recreate] - Create new List with your capacity" +
                                 "\n[push] - Push back new Int" +
                                 "\n[pop] - Pop last Int" +
@@ -47,7 +47,8 @@
                                 "\n[force] - Recreate List with your capacity => bool" +
                                 "\n[find] - Find => Int index" +
                                 "\n[print] - Print Ints, Capacity and Count of List (no 0)" +
-                                "\n[printAll] - Print everything");
+                                "\n[printAll] - Print everything" +
+                                "\n[exit]");
 
                             Helper.GetAnswer();
                             switch (Helper.Answer)
@@ -131,7 +132,7 @@
 
                                 case "exit":
                                     Console.Clear();
-                                    break;
+                                    return;
                                 default:
                                     Console.WriteLine($"wrong answer => {Helper.Answer}");
                                     break;

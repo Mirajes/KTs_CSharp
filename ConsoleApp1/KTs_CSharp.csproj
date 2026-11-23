@@ -13,7 +13,6 @@
 
   <ItemGroup>
     <Folder Include="Main\2_librabry_of_classes\" />
-    <Folder Include="Main\Real1_TaxPayer\" />
   </ItemGroup>
 
 </Project>

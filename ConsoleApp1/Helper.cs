@@ -8,7 +8,7 @@
         public static void CreateAnIdentation(string text)
         {
             Console.Write("\n====================" +
-                $"=> [{text} <=]" +
+                $"=> [{text} <=" +
                 "====================\n");
         }
 
