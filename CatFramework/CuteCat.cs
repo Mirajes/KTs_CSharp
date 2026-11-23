@@ -6,9 +6,9 @@
 
         public CuteCat(int fluffiness = 50) // -int fluffiness??
         {
-            if (0.0 <= fluffiness || fluffiness <= 140.0)
+            if (fluffiness < 0 || fluffiness > 140.0)
             {
-                new CatException($"Unable to create a cute with fluffiness: {_Fluffiness}");
+                throw new CatException($"Unable to create a cute with fluffiness: {fluffiness}");
             }
             else
             {

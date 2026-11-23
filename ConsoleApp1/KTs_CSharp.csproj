@@ -11,8 +11,4 @@
     <ProjectReference Include="..\CatFramework\CatFramework.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Main\2_librabry_of_classes\" />
-  </ItemGroup>
-
 </Project>
