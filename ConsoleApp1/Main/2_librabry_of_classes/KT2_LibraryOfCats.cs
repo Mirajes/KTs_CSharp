@@ -48,11 +48,21 @@ namespace KTs_CSharp
         {
             Cat[] catArray = new Cat[count];
 
-            for (int i = 0; i < count; i++)
-            {
-                int randomIndex = _random.Next(_catFactories.Length);
+            int i = 0;
 
-                catArray[i] = _catFactories[randomIndex]();                
+            while (i < count)
+            {
+                try
+                {
+                    int randomIndex = _random.Next(_catFactories.Length);
+                    catArray[i] = _catFactories[randomIndex]();
+
+                    i++;
+                }
+                catch (CatException ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
 
             return catArray;
@@ -63,8 +73,7 @@ namespace KTs_CSharp
             for (int i = 0; i < catsArr.Length; i++)
             {
                 Cat askedCat = catsArr[i];
-                askedCat.FluffinessCheck();
-                askedCat.ToString();
+                Console.WriteLine($"[{i}]: {askedCat.FluffinessCheck()}, {askedCat.ToString()}");
             }
         }
 

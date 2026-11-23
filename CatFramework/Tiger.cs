@@ -11,18 +11,18 @@
             //bool isCanBeThatWeight = true;
             //bool isCanBeThatFluffiness = true;
 
-            if (75.0 <= weight || weight <= 140.0)
+            if (weight <= 75.0 || weight > 140.0)
             {
-                new CatException($"Unable to create a tiger with weight: {weight}");
+                throw new CatException($"Unable to create a tiger with weight: {weight}");
             }
             else
             {
                 _weight = weight;
             }
 
-            if (0 <= fluffiness || fluffiness <= 100)
+            if (fluffiness < 0 || fluffiness > 100)
             {
-                new CatException($"Unable to create a tiger with fluffiness {fluffiness}");
+                 throw new CatException($"Unable to create a tiger with fluffiness {fluffiness}");
             }
             else
             {
