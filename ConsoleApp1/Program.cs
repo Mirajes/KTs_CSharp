@@ -10,7 +10,8 @@
                 Console.Write("SELECT KT:" +
                     "\n[1] - IntArrayList (repeating OOP + Arrays)" +
                     "\n[2] - CatFramework (Libraries)" +
-                    "\n[4] - TaxPayer (Polymorphic Type Hierarchies)");
+                    "\n[4] - TaxPayer (Polymorphic Type Hierarchies)" +
+                    "\n[8] - SmartHome (Structure Patterns");
                 Helper.GetAnswer();
 
                 switch (Helper.Answer)
@@ -26,6 +27,10 @@
                     case "4":
                         RealKT1_TaxPayer realkt1 = new();
                         realkt1.Enter();
+                        break;
+                    case "8":
+                        KT8_SmartHome kt8 = new();
+                        kt8.Enter();
                         break;
                 }
             }
