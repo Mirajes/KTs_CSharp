@@ -11,6 +11,7 @@
                     "\n[1] - IntArrayList (repeating OOP + Arrays)" +
                     "\n[2] - CatFramework (Libraries)" +
                     "\n[4] - TaxPayer (Polymorphic Type Hierarchies)" +
+                    "\n[6] - Generate Patterns" +
                     "\n[8] - SmartHome (Structure Patterns");
                 Helper.GetAnswer();
 
@@ -28,9 +29,17 @@
                         RealKT1_TaxPayer realkt1 = new();
                         realkt1.Enter();
                         break;
+                    case "6":
+                        KT6_Generative kt6 = new();
+                        kt6.Enter();
+                        break;
                     case "8":
                         KT8_SmartHome kt8 = new();
                         kt8.Enter();
+                        break;
+                    case "9":
+                        KT9_Patterns kt9 = new();
+                        kt9.Enter();
                         break;
                 }
             }

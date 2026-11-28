@@ -11,4 +11,8 @@
     <ProjectReference Include="..\CatFramework\CatFramework.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Main\6_GenericPatterns\" />
+  </ItemGroup>
+
 </Project>
